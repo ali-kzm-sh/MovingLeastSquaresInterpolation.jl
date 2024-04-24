@@ -1,0 +1,3 @@
+var documenterSearchIndex = {"docs":
+[{"location":"","page":"Home","title":"Home","text":"CurrentModule = MovingLeastSquaresInterpolation","category":"page"},{"location":"#MovingLeastSquaresInterpolation","page":"Home","title":"MovingLeastSquaresInterpolation","text":"","category":"section"},{"location":"","page":"Home","title":"Home","text":"Documentation for MovingLeastSquaresInterpolation.","category":"page"},{"location":"","page":"Home","title":"Home","text":"","category":"page"},{"location":"","page":"Home","title":"Home","text":"Modules = [MovingLeastSquaresInterpolation]","category":"page"}]
+}
