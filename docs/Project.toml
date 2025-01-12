@@ -1,0 +1,3 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+MovingLeastSquaresInterpolation = "a1716b3e-3eed-4836-b7a8-4159dad2e893"
