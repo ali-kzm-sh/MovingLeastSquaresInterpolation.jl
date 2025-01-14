@@ -12,9 +12,10 @@ module MovingLeastSquaresInterpolation
 ╰────────────────────────────────────────────────────────────────────────────────────────╯
 =#
 using LinearAlgebra
+using Printf
+
+include("DataStructs.jl")
 
 include("utils.jl")
-
-
 
 end
