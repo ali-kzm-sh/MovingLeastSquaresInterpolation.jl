@@ -16,6 +16,8 @@ using Printf
 
 include("DataStructs.jl")
 
+include("WeightFunctions.jl")
+
 include("utils.jl")
 
 end
