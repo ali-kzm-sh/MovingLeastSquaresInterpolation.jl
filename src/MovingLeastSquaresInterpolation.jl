@@ -18,6 +18,8 @@ include("DataStructs.jl")
 
 include("WeightFunctions.jl")
 
+include("PolynomialFunctions.jl")
+
 include("utils.jl")
 
 end
