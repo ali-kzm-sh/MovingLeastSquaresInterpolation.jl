@@ -14,7 +14,7 @@ module MovingLeastSquaresInterpolation
 using LinearAlgebra
 using Printf
 
-include("DataStructs.jl")
+include("PointSets.jl")
 
 include("WeightFunctions.jl")
 
