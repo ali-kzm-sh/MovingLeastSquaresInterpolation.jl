@@ -1,7 +1,7 @@
 export linearWeight, gaussianWeight, cubicSplineWeight, quarticWeight, exponentialWeight, powerWeight, inverseDistanceWeight, polynomialWeight
 
 """
-    linearWeight(ξ::T; d::T=1.0) where {T<:AbstractFloat}
+    linearWeight(ξ::T; d::T=T(1.0)) where {T<:AbstractFloat}
 
 Computes a linear weight function with compact support. The weight decreases linearly with the distance `ξ` and is zero for `ξ >= d`.
 
@@ -12,14 +12,14 @@ Computes a linear weight function with compact support. The weight decreases lin
 # Returns
 A weight value between `0.0` and `1.0`.
 """
-function linearWeight(ξ::T; d::T=1.0) where {T<:AbstractFloat}
+function linearWeight(ξ::T; d::T=T(1.0)) where {T<:AbstractFloat}
     @assert d > 0 "Support radius d must be positive"
     q = ξ / d
     return q < 1 ? 1 - q : 0.0
 end
 
 """
-    gaussianWeight(ξ::T; d::T=1.0) where {T<:AbstractFloat}
+    gaussianWeight(ξ::T; d::T=T(1.0)) where {T<:AbstractFloat}
 
 Computes a Gaussian weight function. The weight decays exponentially with the squared distance `ξ`.
 
@@ -30,13 +30,13 @@ Computes a Gaussian weight function. The weight decays exponentially with the sq
 # Returns
 A positive weight value based on the Gaussian distribution.
 """
-function gaussianWeight(ξ::T; d::T=1.0) where {T<:AbstractFloat}
+function gaussianWeight(ξ::T; d::T=T(1.0)) where {T<:AbstractFloat}
     @assert d > 0 "Smoothing parameter d must be positive"
     return exp(-(ξ / d)^2)
 end
 
 """
-    cubicSplineWeight(ξ::T; d::T=1.0) where {T<:AbstractFloat}
+    cubicSplineWeight(ξ::T; d::T=T(1.0)) where {T<:AbstractFloat}
 
 Computes a cubic spline weight function with compact support. The function smoothly transitions to zero at `ξ = 2d`.
 
@@ -47,7 +47,7 @@ Computes a cubic spline weight function with compact support. The function smoot
 # Returns
 A weight value between `0.0` and `2/3`.
 """
-function cubicSplineWeight(ξ::T; d::T=1.0) where {T<:AbstractFloat}
+function cubicSplineWeight(ξ::T; d::T=T(1.0)) where {T<:AbstractFloat}
     @assert d > 0 "Support radius d must be positive"
     q = ξ / d
     if q < 1
@@ -60,7 +60,7 @@ function cubicSplineWeight(ξ::T; d::T=1.0) where {T<:AbstractFloat}
 end
 
 """
-    quarticWeight(ξ::T; d::T=1.0) where {T<:AbstractFloat}
+    quarticWeight(ξ::T; d::T=T(1.0)) where {T<:AbstractFloat}
 
 Computes a quartic (Wendland) weight function with compact support. The weight is highly smooth and transitions to zero at `ξ = d`.
 
@@ -71,7 +71,7 @@ Computes a quartic (Wendland) weight function with compact support. The weight i
 # Returns
 A weight value between `0.0` and `1.0`.
 """
-function quarticWeight(ξ::T; d::T=1.0) where {T<:AbstractFloat}
+function quarticWeight(ξ::T; d::T=T(1.0)) where {T<:AbstractFloat}
     @assert d > 0 "Support radius d must be positive"
     q = ξ / d
     if q < 1
@@ -82,7 +82,7 @@ function quarticWeight(ξ::T; d::T=1.0) where {T<:AbstractFloat}
 end
 
 """
-    exponentialWeight(ξ::T; d::T=1.0) where {T<:AbstractFloat}
+    exponentialWeight(ξ::T; d::T=T(1.0)) where {T<:AbstractFloat}
 
 Computes an exponential weight function. The weight decays exponentially with the distance `ξ`.
 
@@ -93,13 +93,13 @@ Computes an exponential weight function. The weight decays exponentially with th
 # Returns
 A positive weight value based on exponential decay.
 """
-function exponentialWeight(ξ::T; d::T=1.0) where {T<:AbstractFloat}
+function exponentialWeight(ξ::T; d::T=T(1.0)) where {T<:AbstractFloat}
     @assert d > 0 "Decay parameter d must be positive"
     return exp(-ξ / d)
 end
 
 """
-    powerWeight(ξ::T; d::T=1.0, p::Int64=2) where {T<:AbstractFloat}
+    powerWeight(ξ::T; d::T=T(1.0), p::Int64=2) where {T<:AbstractFloat}
 
 Computes a power weight function with compact support. The weight is proportional to `(1 - ξ/d)^p` for `ξ < d` and zero otherwise.
 
@@ -111,7 +111,7 @@ Computes a power weight function with compact support. The weight is proportiona
 # Returns
 A weight value between `0.0` and `1.0`.
 """
-function powerWeight(ξ::T; d::T=1.0, p::Int64=2) where {T<:AbstractFloat}
+function powerWeight(ξ::T; d::T=T(1.0), p::Int64=2) where {T<:AbstractFloat}
     @assert d > 0 "Scaling parameter d must be positive"
     @assert p > 0 "Power parameter p must be positive"
     q = ξ / d
@@ -119,7 +119,7 @@ function powerWeight(ξ::T; d::T=1.0, p::Int64=2) where {T<:AbstractFloat}
 end
 
 """
-    inverseDistanceWeight(ξ::T; epsilon::T=1e-6) where {T<:AbstractFloat}
+    inverseDistanceWeight(ξ::T; epsilon::T=T(1e-6)) where {T<:AbstractFloat}
 
 Computes an inverse distance weight function. The weight is inversely proportional to the distance `ξ`, with a small epsilon to prevent division by zero.
 
@@ -130,12 +130,12 @@ Computes an inverse distance weight function. The weight is inversely proportion
 # Returns
 A positive weight value inversely proportional to `ξ`.
 """
-function inverseDistanceWeight(ξ::T; epsilon::T=1e-6) where {T<:AbstractFloat}
+function inverseDistanceWeight(ξ::T; epsilon::T=T(1e-6)) where {T<:AbstractFloat}
     return 1 / (ξ + epsilon)
 end
 
 """
-    polynomialWeight(ξ::T; d::T=1.0, degree::Int64=2) where {T<:AbstractFloat}
+    polynomialWeight(ξ::T; d::T=T(1.0), degree::Int64=2) where {T<:AbstractFloat}
 
 Computes a polynomial weight function with compact support. The weight is proportional to `(1 - ξ/d)^degree` for `ξ < d` and zero otherwise.
 
@@ -147,7 +147,7 @@ Computes a polynomial weight function with compact support. The weight is propor
 # Returns
 A weight value between `0.0` and `1.0`.
 """
-function polynomialWeight(ξ::T; d::T=1.0, degree::Int64=2) where {T<:AbstractFloat}
+function polynomialWeight(ξ::T; d::T=T(1.0), degree::Int64=2) where {T<:AbstractFloat}
     @assert d > 0 "Support radius d must be positive"
     @assert degree >= 0 "Degree must be non-negative"
     q = ξ / d
